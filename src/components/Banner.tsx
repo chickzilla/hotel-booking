@@ -31,6 +31,9 @@ export default function Banner() {
         <div className="text-[5em] mb-[40px] leading-[95px] text-7xl text-black font-bold  text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-zinc-900">
           Explore your place to stay
         </div>
+        <p className="mt-[20px] text-zinc-700 mb-[10px]">
+          ──────────────────────────────────────────────────
+        </p>
         <p className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-600 to-zinc-900 w-[60%]">
           Unlock Unforgettable Adventures, One Reservation at a Time: Your
           Trusted Partner in Crafting Dreamy Escapes, Exceptional Comfort, and
