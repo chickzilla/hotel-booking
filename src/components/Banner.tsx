@@ -28,7 +28,7 @@ export default function Banner() {
           isOddIndex ? "text-black" : "text-white"
         } left-[5%] top-[15%] w-[40%] font-sans`}
       >
-        <div className="text-[5em] mb-[40px] leading-[95px] text-7xl text-black font-bold  text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-zinc-900">
+        <div className="text-[5em] mb-[40px] leading-[95px] text-7xl text-black font-bold  text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-zinc-700">
           Explore your place to stay
         </div>
         <p className="mt-[20px] text-zinc-700 mb-[10px]">
