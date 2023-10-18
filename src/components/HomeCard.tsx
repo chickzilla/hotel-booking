@@ -1,15 +1,16 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function HomeCard() {
   const rounter = useRouter();
   return (
     <div
-      className="bg-white flex flex-row-reverse w-auto h-[65vh] 
-    py-[80px] px-[5px]"
+      className="bg-white flex flex-row justify-evenly w-auto min-h-[65vh] 
+    py-[100px] px-[5px]"
     >
       <div
-        className="right-[10%] relative pl-[50px] pt-[40px]
+        className="pl-[50px] py-[80px]
       border border-l-zinc-700 border-y-white border-r-white border-l-4"
       >
         <div className="text-black font-sans font-bold text-4xl  mb-10 ">
