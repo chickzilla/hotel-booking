@@ -15,11 +15,11 @@ export default async function Topmenu() {
           <TopmenuItem title="Log out" pageRef="api/auth/signout" />
         )}
 
-        <TopMenuButton title="Sign up" routerRef="api/auth/signup" />
+        <TopMenuButton title="Sign up" routerRef="register" />
       </div>
 
       {session?.user?.name ? (
-        <div className="text-lg font-semibold">{session.user.name}</div>
+        <div className="text-sm font-semibold">{session.user.name}</div>
       ) : null}
 
       <div className="space-x-10 font-serif text-center text-black italic font-semibold">
