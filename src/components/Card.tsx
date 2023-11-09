@@ -21,7 +21,7 @@ export default function Card({
           priority
         />
       </div>
-      <div className="h-1-6 p-[20px] ml-5 text-black text-start text-xl font-semibold font-sans">
+      <div className="p-[20px] text-black text-start text-xl font-semibold font-sans">
         <div>{hotelName}</div>
         <div className="text-sm font-medium mt-1 text-slate-700">
           Tel: {hotelRent}
