@@ -24,7 +24,7 @@ export default function Card({
       <div className="h-1-6 p-[20px] ml-5 text-black text-start text-xl font-semibold font-sans">
         <div>{hotelName}</div>
         <div className="text-sm font-medium mt-1 text-slate-700">
-          $ {hotelRent}/night
+          Tel: {hotelRent}
         </div>
       </div>
     </InteractiveCard>

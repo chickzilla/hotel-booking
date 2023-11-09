@@ -1,23 +1,25 @@
 import Card from "./Card";
 
-export default function HotelCatalog() {
+export default async function HotelCatalog({
+  HotelJson,
+}: {
+  HotelJson: Object;
+}) {
+  const HotelReady = await HotelJson;
   return (
     <div
       className="flex flex-row flex-wrap
     w-[80%] mx-auto"
     >
-      <div className="w-1/3">
-        <Card hotelName="Art Hotel" hotelSrc="/img/hotel1.jpg" hotelRent="55" />
-      </div>
-      <div className="w-1/3">
-        <Card hotelName="Art Hotel" hotelSrc="/img/hotel1.jpg" hotelRent="55" />
-      </div>
-      <div className="w-1/3">
-        <Card hotelName="Art Hotel" hotelSrc="/img/hotel1.jpg" hotelRent="55" />
-      </div>
-      <div className="w-1/3">
-        <Card hotelName="Art Hotel" hotelSrc="/img/hotel1.jpg" hotelRent="55" />
-      </div>
+      {HotelReady.data.map((hotelItem: Object) => (
+        <div className="w-1/3">
+          <Card
+            hotelName={hotelItem.name}
+            hotelSrc={hotelItem.picture}
+            hotelRent={hotelItem.tel}
+          />
+        </div>
+      ))}
     </div>
   );
 }

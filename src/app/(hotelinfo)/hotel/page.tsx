@@ -1,7 +1,11 @@
 import Card from "@/components/Card";
 import HotelCatalog from "@/components/HotelCatalog";
+import { Suspense } from "react";
+import { LinearProgress } from "@mui/material";
+import getAllHotels from "@/libs/getAllHotels";
 
 export default function HotelPage() {
+  const hotels = getAllHotels();
   return (
     <main className="mt-[50px] bg-slate-50">
       <div
@@ -10,7 +14,16 @@ export default function HotelPage() {
       >
         Popular hotels
       </div>
-      <HotelCatalog />
+      <Suspense
+        fallback={
+          <h1 className="mt-[20px] text-black text-center mb-[20px]">
+            Relax and wait...
+            <LinearProgress />
+          </h1>
+        }
+      >
+        <HotelCatalog HotelJson={hotels} />
+      </Suspense>
     </main>
   );
 }
