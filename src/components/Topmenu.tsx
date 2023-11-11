@@ -2,6 +2,7 @@ import TopMenuButton from "./TopMenuButton";
 import TopmenuItem from "./TopmenuItem";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default async function Topmenu() {
   const session = await getServerSession(authOption);
@@ -19,7 +20,10 @@ export default async function Topmenu() {
       </div>
 
       {session?.user?.name ? (
-        <div className="text-sm font-semibold">{session.user.name}</div>
+        <div className="text-sm font-semibold">
+          <PersonIcon sx={{ marginRight: "5px" }}></PersonIcon>
+          {session.user.name}
+        </div>
       ) : null}
 
       <div className="space-x-10 font-serif text-center text-black italic font-semibold">

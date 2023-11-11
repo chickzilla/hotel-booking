@@ -6,7 +6,7 @@ export default function HomeCard() {
   const rounter = useRouter();
   return (
     <div
-      className="bg-white flex flex-row justify-evenly w-auto min-h-[65vh] 
+      className="flex flex-row justify-evenly w-auto min-h-[65vh] 
     py-[100px] px-[5px]"
     >
       <div

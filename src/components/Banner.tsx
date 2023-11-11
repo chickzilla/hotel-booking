@@ -10,7 +10,7 @@ export default function Banner() {
 
   return (
     <div
-      className="block p-[5px] m-[0px] w-auto h-[75vh] relative bg-white"
+      className="block p-[5px] m-[0px] w-auto h-[75vh] relative"
       onClick={() => {
         setIndex(index + 1);
       }}

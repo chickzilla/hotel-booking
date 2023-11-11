@@ -3,14 +3,17 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import userRegister from "@/libs/userRegister";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { Router } from "next/router";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import InputAdornment from "@mui/material/InputAdornment";
+import EmailIcon from "@mui/icons-material/Email";
+import CallIcon from "@mui/icons-material/Call";
+import LockIcon from "@mui/icons-material/Lock";
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
@@ -20,15 +23,13 @@ export default function RegisterForm() {
   const [tel, setTel] = useState("");
   const rounter = useRouter();
 
-  const [role, setRole] = useState("user");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRole((event.target as HTMLInputElement).value);
-  };
-
   const registerHander = async () => {
     if (password !== confirmPassword) {
       alert("Password not match");
+      return;
+    }
+    if (!name || !email || !password || !confirmPassword || !tel) {
+      alert("Please fill all field");
       return;
     }
 
@@ -37,76 +38,122 @@ export default function RegisterForm() {
       if (res.ok) {
         alert("Register Success");
         rounter.push("/api/auth/signin");
-      } else alert("Register Fail");
+      } else alert("Register fail please try again");
     } catch (err) {
-      alert("Register Fail");
+      alert("Register fail please try again");
       console.error(err);
     }
   };
 
   return (
-    <div className="flex flex-col justify-center drop-shadow-xl bg-slate-100 rounded-3xl py-5 px-10 w-[30%] h-[100vh] space-y-10 items-center">
-      <div className="text-center text-2xl font-bold ">Registation</div>
+    <div className="flex flex-col justify-center border drop-shadow-xl bg-slate-100 px-5 py-10 w-[35%] space-y-12 items-center bg-white">
+      <div className="text-2xl font-semibold w-[100%] px-5">Sign up</div>
 
       <TextField
         id="outlined-basic"
         label="Name"
-        variant="standard"
-        sx={{ width: "70%", marginY: "20px" }}
+        variant="outlined"
+        sx={{ width: "90%" }}
+        size="small"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <AccountCircle />
+            </InputAdornment>
+          ),
+        }}
       />
       <TextField
         id="outlined-basic"
         label="Email"
-        variant="standard"
-        sx={{ width: "70%", marginY: "20px" }}
+        variant="outlined"
+        sx={{ width: "90%" }}
+        size="small"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <EmailIcon />
+            </InputAdornment>
+          ),
+        }}
       />
       <TextField
         id="outlined-basic"
         label="Tel"
-        variant="standard"
-        sx={{ width: "70%", marginY: "20px" }}
+        variant="outlined"
+        sx={{ width: "90%" }}
+        size="small"
         value={tel}
         onChange={(e) => setTel(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <CallIcon />
+            </InputAdornment>
+          ),
+        }}
       />
-
-      <FormControl>
-        <FormLabel id="demo-controlled-radio-buttons-group">Role</FormLabel>
-        <RadioGroup row value={role} onChange={handleChange}>
-          <FormControlLabel value="user" control={<Radio />} label="user" />
-          <FormControlLabel value="admin" control={<Radio />} label="admin" />
-        </RadioGroup>
-      </FormControl>
 
       <TextField
         id="outlined-basic"
         label="Password"
-        variant="standard"
-        sx={{ width: "70%", marginY: "20px" }}
+        variant="outlined"
+        sx={{ width: "90%" }}
+        type="password"
+        size="small"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <LockIcon />
+            </InputAdornment>
+          ),
+        }}
       />
       <TextField
         id="outlined-basic"
         label="Confirm Password"
-        variant="standard"
-        sx={{ width: "70%", marginY: "20px" }}
+        variant="outlined"
+        type="password"
+        sx={{ width: "90%" }}
+        size="small"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <LockIcon />
+            </InputAdornment>
+          ),
+        }}
       />
 
-      <div className="text-center">
-        <button
-          className="bg-black text-slate-100 py-2 px-3 m-2 rounded z-30 w-24 w-full hover:bg-slate-700 hover:text-white w-[100%]"
-          onClick={() => {
-            registerHander();
-          }}
-        >
-          Register
-        </button>
+      <div className="w-[100%] flex flex-col text-center items-center">
+        <div className="text-center w-[90%] mb-5">
+          <button
+            className="bg-black text-slate-100 py-2 px-3 rounded z-30 w-24 w-[100%] hover:bg-slate-700 hover:text-white"
+            onClick={() => {
+              registerHander();
+            }}
+          >
+            Register
+          </button>
+        </div>
+        <div className="text-center w-[90%] border-t-2 pt-5">
+          <button
+            className="border border-black border-2 text-black py-2 px-3 rounded z-30 w-24 w-[100%] hover:bg-slate-700 hover:text-white"
+            onClick={() => {
+              rounter.push("/api/auth/signin");
+            }}
+          >
+            Already have an account? Sign in
+          </button>
+        </div>
       </div>
     </div>
   );
