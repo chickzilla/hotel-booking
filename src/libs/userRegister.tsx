@@ -6,7 +6,6 @@ export default async function userRegister(
 ) {
   const response = await fetch("http://localhost:5000/api/v1/auth/register", {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -20,6 +19,8 @@ export default async function userRegister(
     }),
   });
   if (!response.ok) throw new Error("Failed to fetch register");
+  /*console.log(response.status);
+  console.log(response.statusText);*/
 
-  return response.json();
+  return response;
 }
