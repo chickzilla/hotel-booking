@@ -19,14 +19,7 @@ export default function TextFieldAddHotel({
       label={header}
       variant="outlined"
       sx={{
-        width: "32%",
-        "& input": { color: "white" },
-        fieldset: { borderColor: "white !important" },
-        "&::placeholder": { color: "white" },
-        "& label": { color: "white" }, // Set the label color to white when focused
-        "&:focus-within": {
-          "& label": { color: "white" }, // Set the label color to white when focused
-        },
+        width: "90%",
       }}
       size="small"
       value={value}
@@ -35,7 +28,6 @@ export default function TextFieldAddHotel({
         setParameter(e.target.value);
       }}
       InputProps={{
-        style: { color: "white" },
         startAdornment: (
           <InputAdornment position="start">{icon}</InputAdornment>
         ),

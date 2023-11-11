@@ -46,7 +46,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="flex flex-col justify-center border drop-shadow-xl bg-slate-100 px-5 py-10 w-[35%] space-y-12 items-center bg-white">
+    <div className="flex flex-col justify-center border drop-shadow-xl px-5 py-10 w-[35%] space-y-12 items-center bg-white">
       <div className="text-2xl font-semibold w-[100%] px-5">Sign up</div>
 
       <TextField
@@ -136,7 +136,7 @@ export default function RegisterForm() {
       <div className="w-[100%] flex flex-col text-center items-center">
         <div className="text-center w-[90%] mb-5">
           <button
-            className="bg-black text-slate-100 py-2 px-3 rounded z-30 w-24 w-[100%] hover:bg-slate-700 hover:text-white"
+            className="bg-black text-slate-100 py-2 px-3 rounded z-30 w-24 w-[100%] font-semibold hover:bg-slate-700 hover:text-white"
             onClick={() => {
               registerHander();
             }}
