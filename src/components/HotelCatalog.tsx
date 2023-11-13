@@ -1,4 +1,5 @@
 import Card from "./Card";
+import Link from "next/link";
 
 export default async function HotelCatalog({
   HotelJson,
@@ -12,13 +13,13 @@ export default async function HotelCatalog({
     w-[70%] mx-auto"
     >
       {HotelReady.data.map((hotelItem: Object) => (
-        <div className="w-1/3" key={hotelItem.id}>
+        <Link className="w-1/3" href={`/hotel/${hotelItem.id}`}>
           <Card
             hotelName={hotelItem.name}
             hotelSrc={hotelItem.picture}
             hotelRent={hotelItem.tel}
           />
-        </div>
+        </Link>
       ))}
     </div>
   );
