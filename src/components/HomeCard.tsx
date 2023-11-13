@@ -1,17 +1,36 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import HotelIcon from "@mui/icons-material/Hotel";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function HomeCard() {
   const rounter = useRouter();
   return (
     <div
-      className="flex flex-row justify-evenly w-auto min-h-[65vh] 
-    py-[100px] px-[5px]"
+      className="flex flex-row justify-evenly items-center 
+    py-[100px] px-20"
     >
+      <div className="flex flex-col justify-center text-center w-[60%] space-y-10 text-zinc-600 ">
+        <div className="h-30% text-4xl space-x-2 font-bold items-center flex flex-row justify-evenly ">
+          <SearchIcon sx={{ width: "10%", height: "10%", color: "black" }} />
+          Find the best hotel
+        </div>
+        <div className="h-30% text-4xl space-x-2 font-bold items-center flex flex-row justify-evenly ">
+          <BookmarkAddIcon
+            sx={{ width: "10%", height: "10%", color: "black" }}
+          />
+          Book the best deal
+        </div>
+        <div className="h-30% text-4xl space-x-2 font-bold items-center flex flex-row justify-evenly">
+          <HotelIcon sx={{ width: "10%", height: "10%", color: "black" }} />
+          Take the best service
+        </div>
+      </div>
       <div
-        className="pl-[50px] py-[80px]
-      border border-l-zinc-700 border-y-white border-r-white border-l-4"
+        className="w-[40%] pl-14 pt-10
+      border border-l-zinc-700 border-y-gray-100 border-l-4"
       >
         <div className="text-black font-sans font-bold text-4xl  mb-10 ">
           Choose the best hotel
@@ -22,13 +41,13 @@ export default function HomeCard() {
 
         <button
           className="text-slate-100 text-4xl font-semibold font-sans 
-          bg-zinc-800 py-2 px-3 m-4 rounded-full z-30 w-60 h-20 hover:bg-slate-700 hover:text-white "
+          bg-red-500 py-2 px-3 m-4 rounded-full z-30 w-60 h-20 hover:bg-red-700 hover:text-white "
           onClick={(e) => {
             rounter.push("/hotel");
             e.stopPropagation();
           }}
         >
-          View
+          Choose
         </button>
       </div>
     </div>
