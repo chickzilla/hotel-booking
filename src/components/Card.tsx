@@ -17,8 +17,9 @@ export default function Card({
           src={hotelSrc}
           alt="card"
           fill={true}
-          objectFit="cover"
           priority
+          sizes="100%"
+          className="object-cover"
         />
       </div>
       <div className="p-[20px] text-black text-start text-xl font-semibold font-sans">
