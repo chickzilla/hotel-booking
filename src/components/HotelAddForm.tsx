@@ -7,6 +7,9 @@ import { TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import Hotel from "@/db/models/Hotel";
 import { dbConnect } from "@/db/dbConnect";
+import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export default async function HotelAddForm() {
   const addHotel = async (addHotelFrom: FormData) => {
@@ -18,6 +21,11 @@ export default async function HotelAddForm() {
     const postalcode = addHotelFrom.get("postal code");
     const tel = addHotelFrom.get("tel");
     const picture = addHotelFrom.get("picture");
+
+    if (postalcode?.length != 5) {
+      console.error("Postal code must be 5 digits");
+      return;
+    }
 
     try {
       await dbConnect();
@@ -31,9 +39,10 @@ export default async function HotelAddForm() {
         picture: picture,
       });
     } catch (err) {
-      alert("Add hotel fail please try again");
       console.error(err);
     }
+    revalidateTag("hotels");
+    redirect("/hotel");
   };
   return (
     <div className="flex flex-col justify-center border drop-shadow-xl px-5 py-10 w-[35%] space-y-6 items-center bg-white">
@@ -45,6 +54,7 @@ export default async function HotelAddForm() {
           label="hotel name"
           name="hotel name"
           variant="outlined"
+          required
           sx={{
             width: "90%",
           }}
@@ -63,6 +73,7 @@ export default async function HotelAddForm() {
           label="address"
           name="address"
           variant="outlined"
+          required
           sx={{
             width: "90%",
           }}
@@ -80,6 +91,7 @@ export default async function HotelAddForm() {
           label="district"
           name="district"
           variant="outlined"
+          required
           sx={{
             width: "90%",
           }}
@@ -97,6 +109,7 @@ export default async function HotelAddForm() {
           label="province"
           name="province"
           variant="outlined"
+          required
           sx={{
             width: "90%",
           }}
@@ -114,6 +127,7 @@ export default async function HotelAddForm() {
           label="postal code"
           name="postal code"
           variant="outlined"
+          required
           sx={{
             width: "90%",
           }}
@@ -125,6 +139,7 @@ export default async function HotelAddForm() {
               </InputAdornment>
             ),
           }}
+          helperText="Postal code must be 5 digits"
         />
 
         <TextField
@@ -132,6 +147,7 @@ export default async function HotelAddForm() {
           label="tel"
           name="tel"
           variant="outlined"
+          required
           sx={{
             width: "90%",
           }}
@@ -149,6 +165,7 @@ export default async function HotelAddForm() {
           label="picture"
           name="picture"
           variant="outlined"
+          required
           sx={{
             width: "90%",
           }}
