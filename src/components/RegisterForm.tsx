@@ -32,6 +32,10 @@ export default function RegisterForm() {
       alert("Please fill all field");
       return;
     }
+    if (password.length < 6) {
+      alert("Password must be atleast 6 digit");
+      return;
+    }
 
     try {
       const res = await userRegister(name, email, tel, password);
@@ -53,6 +57,7 @@ export default function RegisterForm() {
         id="outlined-basic"
         label="Name"
         variant="outlined"
+        required
         sx={{ width: "90%" }}
         size="small"
         value={name}
@@ -71,6 +76,7 @@ export default function RegisterForm() {
         variant="outlined"
         sx={{ width: "90%" }}
         size="small"
+        required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         InputProps={{
@@ -85,6 +91,7 @@ export default function RegisterForm() {
         id="outlined-basic"
         label="Tel"
         variant="outlined"
+        required
         sx={{ width: "90%" }}
         size="small"
         value={tel}
@@ -105,6 +112,7 @@ export default function RegisterForm() {
         sx={{ width: "90%" }}
         type="password"
         size="small"
+        required
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         InputProps={{
@@ -114,6 +122,7 @@ export default function RegisterForm() {
             </InputAdornment>
           ),
         }}
+        helperText="Postal code must be atleast 6 digit"
       />
       <TextField
         id="outlined-basic"
@@ -122,6 +131,7 @@ export default function RegisterForm() {
         type="password"
         sx={{ width: "90%" }}
         size="small"
+        required
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
         InputProps={{
