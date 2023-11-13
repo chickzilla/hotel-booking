@@ -9,7 +9,7 @@ export default async function HotelCatalog({
   return (
     <div
       className="flex flex-row flex-wrap
-    w-[90%] mx-auto"
+    w-[70%] mx-auto"
     >
       {HotelReady.data.map((hotelItem: Object) => (
         <div className="w-1/3" key={hotelItem.id}>

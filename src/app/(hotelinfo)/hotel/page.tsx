@@ -27,7 +27,7 @@ export default async function HotelPage() {
           </div>
         }
       >
-        <div className="w-[80vw] flex flex-row font-bold text-3xl justify-between">
+        <div className="w-[70%] flex flex-row font-bold text-3xl justify-between">
           <div>Popular hotels</div>
           {userProfile?.data.role === "admin" ? <AddingHotelButton /> : null}
         </div>
