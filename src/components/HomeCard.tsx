@@ -24,7 +24,7 @@ export default function HomeCard() {
               backgroundColor: "#f0a830",
             }}
           />
-          Find the best hotel
+          Find the best place
         </div>
         <div className="h-30% text-4xl space-x-2 font-bold items-center flex flex-row justify-evenly ">
           <BookmarkAddIcon
