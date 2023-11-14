@@ -10,7 +10,7 @@ export default async function HotelCatalog({
   return (
     <div
       className="flex flex-row flex-wrap
-    w-[70%] mx-auto"
+    w-[70%] mx-auto overflow-hidden"
     >
       {HotelReady.data.map((hotelItem: Object) => (
         <Link

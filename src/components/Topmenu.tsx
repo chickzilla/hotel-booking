@@ -11,12 +11,16 @@ export default async function Topmenu() {
     <div className="fixed top-0 right-0 left-0 z-30 flex flex-row-reverse items-center px-24 h-14 bg-slate-100 justify-between bg-white text-xs opacity-90">
       <div className="space-x-10 mr-5">
         {!session ? (
-          <TopmenuItem title="Sign in" pageRef="api/auth/signin" />
+          <TopmenuItem
+            title="Sign in"
+            pageRef="
+          /api/auth/signin"
+          />
         ) : (
-          <TopmenuItem title="Log out" pageRef="api/auth/signout" />
+          <TopmenuItem title="Log out" pageRef="/api/auth/signout" />
         )}
 
-        <TopMenuButton title="Sign up" routerRef="register" />
+        <TopMenuButton title="Sign up" routerRef="/register" />
       </div>
 
       {session?.user?.name ? (
