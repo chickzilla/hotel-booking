@@ -6,7 +6,6 @@ export default async function createBooking(hid: string, bookingData: any) {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${hid}`,
       },
       body: JSON.stringify(bookingData),
     }
