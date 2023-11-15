@@ -7,7 +7,6 @@ import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
 
-
 export default async function HotelPage() {
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;

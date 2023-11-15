@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Banner() {
-  const covers = ["/img/Banner1.png", "/img/Banner8.png"];
+  const covers = ["/img/Banner1.png", "/img/Banner2.png"];
 
   const [index, setIndex] = useState(0);
 
