@@ -14,18 +14,43 @@ export default function HomeCard() {
     >
       <div className="flex flex-col justify-center text-center w-[60%] space-y-10 text-zinc-600 ">
         <div className="h-30% text-4xl space-x-2 font-bold items-center flex flex-row justify-evenly ">
-          <SearchIcon sx={{ width: "10%", height: "10%", color: "black" }} />
-          Find the best hotel
+          <SearchIcon
+            sx={{
+              width: "12%",
+              height: "10%",
+              color: "black",
+              borderRadius: "50%",
+              padding: "10px",
+              backgroundColor: "#f0a830",
+            }}
+          />
+          Find the best place
         </div>
         <div className="h-30% text-4xl space-x-2 font-bold items-center flex flex-row justify-evenly ">
           <BookmarkAddIcon
-            sx={{ width: "10%", height: "10%", color: "black" }}
+            sx={{
+              width: "12%",
+              height: "10%",
+              color: "black",
+              borderRadius: "50%",
+              padding: "10px",
+              backgroundColor: "#78c0a8",
+            }}
           />
           Book the best deal
         </div>
         <div className="h-30% text-4xl space-x-2 font-bold items-center flex flex-row justify-evenly">
-          <HotelIcon sx={{ width: "10%", height: "10%", color: "black" }} />
-          Take the best service
+          <HotelIcon
+            sx={{
+              width: "12%",
+              height: "10%",
+              color: "black",
+              borderRadius: "50%",
+              padding: "10px",
+              backgroundColor: "#fcebb6",
+            }}
+          />
+          Take the best rest
         </div>
       </div>
       <div

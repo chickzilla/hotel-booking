@@ -4,6 +4,8 @@ import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
+import { useState } from "react";
+import DetailForm from "@/components/DetailForm";
 
 export default async function DetailPage({
   params,
@@ -11,13 +13,21 @@ export default async function DetailPage({
   params: { hid: string };
 }) {
   const hotel = await getHotelById(params.hid);
+
+  /*const [hotelname, setHotelname] = useState(hotel.data.name);
+  const [hoteladdress, setHoteladdress] = useState(hotel.data.address);
+  const [hoteldistrict, setHoteldistrict] = useState(hotel.data.district);
+  const [hotelprovince, setHotelprovince] = useState(hotel.data.province);
+  const [hotelpostalcode, setHotelpostalcode] = useState(hotel.data.postalcode);
+  const [hoteltel, setHoteltel] = useState(hotel.data.tel);*/
+
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;
 
   const profile = await getUserProfile(session.user.token);
 
   return (
-    <div>
+    <main>
       <div className="p-5 flex flex-col">
         <h1 className="text-2xl font-medium text-black text-center font-sans ">
           {hotel.data.name}
@@ -29,41 +39,17 @@ export default async function DetailPage({
             width={0}
             height={0}
             sizes="100vw"
+            priority
             className="rounded-lg w-[30%] bg-black shadow-md mr-3"
           />
           <div className="flex flex-col shadow-md bg-gray-300 p-2 pt-5 rounded-sm w-[65%] font-sans items-center">
-            <div className="w-[100%]">
-              <div>
-                <div className="font-semibold mx-5 px-1">Address: </div>
-                <div className="text-md mx-5 text-black border-4 border-double px-2 mb-2 rounded-md bg-white">
-                  {hotel.data.address}
-                </div>
-              </div>
-              <div>
-                <div className="font-semibold mx-5 px-1">District: </div>
-                <div className="text-md mx-5 text-black border-4 border-double px-2 mb-2 rounded-md bg-white">
-                  {hotel.data.district}
-                </div>
-              </div>
-              <div>
-                <div className="font-semibold mx-5 px-1">Province: </div>
-                <div className="text-md mx-5 text-black border-4 border-double px-2 mb-2 rounded-md bg-white">
-                  {hotel.data.province}
-                </div>
-              </div>
-              <div>
-                <div className="font-semibold mx-5 px-1">Postal Code: </div>
-                <div className="text-md mx-5 text-black border-4 border-double px-2 mb-2 rounded-md bg-white">
-                  {hotel.data.postalcode}
-                </div>
-              </div>
-              <div>
-                <div className="font-semibold mx-5 px-1">Tel: </div>
-                <div className="text-md mx-5 text-black border-4 border-double px-2 mb-2 rounded-md bg-white">
-                  {hotel.data.tel}
-                </div>
-              </div>
-            </div>
+            <DetailForm
+              address={hotel.data.address}
+              district={hotel.data.district}
+              provice={hotel.data.province}
+              postalcode={hotel.data.postalcode}
+              tel={hotel.data.tel}
+            />
             <Link href={`/booking?id${params.hid}`}>
               <button
                 className="text-slate-100 text-md font-semibold font-sans 
@@ -91,6 +77,6 @@ export default async function DetailPage({
           </button>
         </div>
       ) : null}
-    </div>
+    </main>
   );
 }

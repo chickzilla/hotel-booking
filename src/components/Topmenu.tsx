@@ -17,12 +17,16 @@ export default async function Topmenu() {
           </div>
         ) : null}
         {!session ? (
-          <TopmenuItem title="Sign in" pageRef="api/auth/signin" />
+          <TopmenuItem
+            title="Sign in"
+            pageRef="
+          /api/auth/signin"
+          />
         ) : (
-          <TopmenuItem title="Log out" pageRef="api/auth/signout" />
+          <TopmenuItem title="Log out" pageRef="/api/auth/signout" />
         )}
 
-        <TopMenuButton title="Sign up" routerRef="register" />
+        <TopMenuButton title="Sign up" routerRef="/register" />
       </div>
       <div className="space-x-10 font-serif text-center text-black italic font-semibold left-0">
         Book&
