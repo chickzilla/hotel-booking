@@ -3,6 +3,7 @@ import TopmenuItem from "./TopmenuItem";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import PersonIcon from "@mui/icons-material/Person";
+import Link from "next/link";
 
 export default async function Topmenu() {
   const session = await getServerSession(authOption);
@@ -28,9 +29,14 @@ export default async function Topmenu() {
 
         <TopMenuButton title="Sign up" routerRef="/register" />
       </div>
-      <div className="space-x-10 font-serif text-center text-black italic font-semibold left-0">
-        Book&
-        <p className="text-black inline text-yellow-600">Rest</p>
+      <div className="flex flex-row-reverse items-center">
+        <TopmenuItem title="Booking List" pageRef="/bookinglist" />
+        <Link href="..\">
+          <div className="space-x-10 font-serif text-center text-black italic font-semibold left-0 mr-10">
+            Book&
+            <p className="text-black inline text-yellow-600">Rest</p>
+          </div>
+        </Link>
       </div>
     </div>
   );

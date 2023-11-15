@@ -48,8 +48,9 @@ export default async function HotelAddForm() {
     <div className="flex flex-col justify-center border drop-shadow-xl px-5 py-10 w-[35%] space-y-6 items-center bg-white">
       <div className="text-2xl font-semibold w-[100%] px-5">Hotel Detail</div>
 
-      <form action={addHotel} className="w-[100%] h-[100%] space-y-10">
+      <form action={addHotel} className="w-[100%] h-[100%] ml-10">
         <TextField
+          className="mb-10"
           id="hotel name"
           label="hotel name"
           name="hotel name"
@@ -69,6 +70,7 @@ export default async function HotelAddForm() {
         />
 
         <TextField
+          className="mb-10"
           id="address"
           label="address"
           name="address"
@@ -87,6 +89,7 @@ export default async function HotelAddForm() {
           }}
         />
         <TextField
+          className="mb-10"
           id="district"
           label="district"
           name="district"
@@ -105,6 +108,7 @@ export default async function HotelAddForm() {
           }}
         />
         <TextField
+          className="mb-10"
           id="province"
           label="province"
           name="province"
@@ -123,6 +127,7 @@ export default async function HotelAddForm() {
           }}
         />
         <TextField
+          className="mb-5"
           id="postal code"
           label="postal code"
           name="postal code"
@@ -143,6 +148,7 @@ export default async function HotelAddForm() {
         />
 
         <TextField
+          className="mb-10"
           id="tel"
           label="tel"
           name="tel"
@@ -161,6 +167,7 @@ export default async function HotelAddForm() {
           }}
         />
         <TextField
+          className="mb-10"
           id="picture"
           label="picture"
           name="picture"
