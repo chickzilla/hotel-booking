@@ -30,9 +30,13 @@ export default async function Topmenu() {
         </div>
       ) : null}
 
-      <div className="space-x-10 font-serif text-center text-black italic font-semibold">
+      <div className="space-x-10 font-serif text-center text-black italic font-semibold flex flex-row">
         Book&
         <p className="text-black inline text-yellow-600">Rest</p>
+        <div className="not-italic font-sans text-black text-sm font-medium flex flex-row space-x-10">
+          <TopmenuItem title="Home" pageRef="/" />
+          <TopmenuItem title="Hotels" pageRef="/hotel" />
+        </div>
       </div>
     </div>
   );
