@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 export default function BookingPage() {
   const urlParams = useSearchParams();
   const hid = urlParams.get("id");
-  if (!hid) return null;
   //const hotel_name = await getHotelById(hid);
   const bookingData = {
     bookingDate: document.getElementById("start"),

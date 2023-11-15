@@ -50,7 +50,7 @@ export default async function DetailPage({
               postalcode={hotel.data.postalcode}
               tel={hotel.data.tel}
             />
-            <Link href={`/booking?id${params.hid}`}>
+            <Link href={`/booking/${params.hid}`}>
               <button
                 className="text-slate-100 text-md font-semibold font-sans 
           bg-zinc-800 py-2 px-8 m-4 rounded-full z-30 hover:bg-slate-700 hover:text-white mt-10"
