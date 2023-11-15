@@ -1,5 +1,6 @@
 export default async function getHotelById(hid: string) {
   const response = await fetch(`http://localhost:5000/api/v1/hotels/${hid}`, {
+    cache: "no-store",
     method: "GET",
   });
   if (!response.ok) {

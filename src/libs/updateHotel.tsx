@@ -1,6 +1,5 @@
-import { METHODS } from "http";
-
 export default async function updateHotel(
+  token: string,
   hid: string,
   name: string,
   address: string,
@@ -12,9 +11,9 @@ export default async function updateHotel(
 ) {
   const response = await fetch(`http://localhost:5000/api/v1/hotels/${hid}`, {
     method: "PUT",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name: name,
