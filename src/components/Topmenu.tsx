@@ -29,14 +29,17 @@ export default async function Topmenu() {
 
         <TopMenuButton title="Sign up" routerRef="/register" />
       </div>
-      <div className="flex flex-row-reverse items-center">
-        <TopmenuItem title="Booking List" pageRef="/bookinglist" />
-        <Link href="..\">
-          <div className="space-x-10 font-serif text-center text-black italic font-semibold left-0 mr-10">
-            Book&
-            <p className="text-black inline text-yellow-600">Rest</p>
-          </div>
-        </Link>
+
+      {session?.user?.name ? (
+        <div className="text-sm font-semibold">
+          <PersonIcon sx={{ marginRight: "5px" }}></PersonIcon>
+          {session.user.name}
+        </div>
+      ) : null}
+
+      <div className="space-x-10 font-serif text-center text-black italic font-semibold">
+        Book&
+        <p className="text-black inline text-yellow-600">Rest</p>
       </div>
     </div>
   );
