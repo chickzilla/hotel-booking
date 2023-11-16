@@ -3,6 +3,8 @@ import updateHotel from "@/libs/updateHotel";
 import { useState } from "react";
 import deleteHotel from "@/libs/deleteHotel";
 import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+import { red } from "@mui/material/colors";
 import { revalidateTag } from "next/cache";
 
 export default function DetailForm({
@@ -89,13 +91,15 @@ export default function DetailForm({
   const deleteHandler = async () => {
     try {
       const res = await deleteHotel(token, hid);
+      //rounter.push("/hotel");
+
       if (res.ok) {
-        alert("Delete Success");
-        setIsDeleting(!isDeleting);
-        setMessage("");
-        //revalidateTag("hotels");
+        //alert("Delete Success");
+        //setIsDeleting(!isDeleting);
+        //setMessage("");
 
         rounter.push("/hotel");
+        //redirect("/hotel");
       } else alert("Delete fail please try again but res.ok");
     } catch (err) {
       alert("Delete fail please try again");

@@ -12,6 +12,7 @@ export default async function HotelPage() {
   if (!session || !session.user.token) return null;
 
   const userProfile = await getUserProfile(session.user.token);
+
   const hotels = getAllHotels();
   return (
     <main className="mt-[80px] flex flex-col justify-center items-center text-center ">
