@@ -30,6 +30,9 @@ export default async function Topmenu() {
         <TopMenuButton title="Sign up" routerRef="/register" />
       </div>
       <div className="flex flex-row-reverse items-center">
+        <div className="mx-10">
+          <TopmenuItem title="Hotels" pageRef="/hotel" />
+        </div>
         <TopmenuItem title="Booking List" pageRef="/bookinglist" />
         <Link href="..\">
           <div className="space-x-10 font-serif text-center text-black italic font-semibold left-0 mr-10">
