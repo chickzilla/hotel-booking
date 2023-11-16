@@ -4,6 +4,7 @@ import Image from "next/image";
 import HotelIcon from "@mui/icons-material/Hotel";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import SearchIcon from "@mui/icons-material/Search";
+import { redirect } from "next/navigation";
 
 export default function HomeCard() {
   const rounter = useRouter();
@@ -68,6 +69,7 @@ export default function HomeCard() {
           className="text-slate-100 text-4xl font-semibold font-sans 
           bg-red-500 py-2 px-3 m-4 rounded-full z-30 w-60 h-20 hover:bg-red-700 hover:text-white "
           onClick={(e) => {
+            rounter.refresh();
             rounter.push("/hotel");
             e.stopPropagation();
           }}

@@ -4,6 +4,7 @@ export default async function getAllHotels() {
   });
   const response = await fetch("http://localhost:5000/api/v1/hotels", {
     next: { tags: ["hotels"] },
+    cache: "no-store",
   });
 
   if (!response.ok) {
