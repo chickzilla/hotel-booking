@@ -14,7 +14,7 @@ export default async function HotelPage() {
   const userProfile = await getUserProfile(session.user.token);
   const hotels = getAllHotels();
   return (
-    <main className="mt-[80px] flex flex-col justify-center items-center text-center">
+    <main className="mt-[80px] flex flex-col justify-center items-center text-center ">
       <Suspense
         fallback={
           <div className="text-blue text-center mb-[20px] my-[150px] items-center flex flex-col w-full text-2xl font-bold">
