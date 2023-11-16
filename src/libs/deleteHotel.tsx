@@ -7,5 +7,5 @@ export default async function deleteHotel(token: string, hid: string) {
   });
   if (!response.ok) throw new Error("Failed to fetch delete hotel");
 
-  return await response.json();
+  return response;
 }

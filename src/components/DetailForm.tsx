@@ -1,7 +1,9 @@
 "use client";
 import updateHotel from "@/libs/updateHotel";
-import { set } from "mongoose";
 import { useState } from "react";
+import deleteHotel from "@/libs/deleteHotel";
+import { useRouter } from "next/navigation";
+import { revalidateTag } from "next/cache";
 
 export default function DetailForm({
   role,
@@ -34,7 +36,9 @@ export default function DetailForm({
   const [hotelTel, setHotelTel] = useState(tel);
   const [isChanging, setIsChanging] = useState(false);
   const [message, setMessage] = useState("");
+  const rounter = useRouter();
 
+  // -----------------update hotel-----------------
   const updateHander = async () => {
     if (hotelPostalcode.length != 5) {
       alert("Postal code must be 5 digits");
@@ -75,6 +79,26 @@ export default function DetailForm({
       } else alert("Update fail please try again but res.ok");
     } catch (err) {
       alert("Update fail please try again");
+      console.log(err);
+    }
+  };
+
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // -----------------delete hotel-----------------
+  const deleteHandler = async () => {
+    try {
+      const res = await deleteHotel(token, hid);
+      if (res.ok) {
+        alert("Delete Success");
+        setIsDeleting(!isDeleting);
+        setMessage("");
+        //revalidateTag("hotels");
+
+        rounter.push("/hotel");
+      } else alert("Delete fail please try again but res.ok");
+    } catch (err) {
+      alert("Delete fail please try again");
       console.log(err);
     }
   };
@@ -187,12 +211,46 @@ export default function DetailForm({
           <div className="text-red-500 font-semibold items-center py-auto justify-center align-center">
             {message}
           </div>
+          {isDeleting === false ? (
+            <button
+              className="text-slate-100 text-md font-semibold font-sans 
+              bg-red-700 py-2 px-8 m-4 rounded-full z-30 hover:bg-red-950 hover:text-white mt-10"
+              onClick={() => {
+                setIsDeleting(!isDeleting);
+                setIsChanging(false);
+                setMessage("Deleting mode");
+              }}
+            >
+              Delete
+            </button>
+          ) : (
+            <>
+              <button
+                className="text-slate-100 text-md font-semibold font-sans 
+              bg-red-700 py-2 px-8 m-4 rounded-full z-30 hover:bg-red-950 hover:text-white mt-10"
+                onClick={() => deleteHandler()}
+              >
+                Sure!
+              </button>
+              <button
+                className="text-slate-100 text-md font-semibold font-sans 
+              bg-gray-700 py-2 px-8 m-4 rounded-full z-30 hover:bg-red-950 hover:text-white mt-10"
+                onClick={() => {
+                  setIsDeleting(!isDeleting);
+                  setMessage("");
+                }}
+              >
+                No!
+              </button>
+            </>
+          )}
           {isChanging === false ? (
             <button
               className="text-slate-100 text-md font-semibold font-sans 
               bg-sky-700 py-2 px-8 m-4 rounded-full z-30 hover:bg-sky-950 hover:text-white mt-10"
               onClick={() => {
                 setIsChanging(!isChanging);
+                setIsDeleting(false);
                 setMessage("Editing mode");
               }}
             >
@@ -209,12 +267,6 @@ export default function DetailForm({
               Accept
             </button>
           )}
-          <button
-            className="text-slate-100 text-md font-semibold font-sans 
-              bg-red-700 py-2 px-8 m-4 rounded-full z-30 hover:bg-red-950 hover:text-white mt-10"
-          >
-            Delete
-          </button>
         </div>
       ) : (
         ""
