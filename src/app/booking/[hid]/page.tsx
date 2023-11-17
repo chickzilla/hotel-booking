@@ -1,7 +1,5 @@
 import FromBooking from "@/components/FormBooking";
-import createBooking from "@/libs/createBooking";
 import getHotelById from "@/libs/getHotel";
-import { useSearchParams } from "next/navigation";
 
 export default async function BookingPage({
   params,

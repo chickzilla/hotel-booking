@@ -33,7 +33,9 @@ export default async function Topmenu() {
         <div className="mx-10">
           <TopmenuItem title="Hotels" pageRef="/hotel" />
         </div>
-        <TopmenuItem title="Booking List" pageRef="/bookinglist" />
+        <div>
+          <TopmenuItem title="Booking List" pageRef="/bookinglist" />
+        </div>
         <Link href="..\">
           <div className="space-x-10 font-serif text-center text-black italic font-semibold left-0 mr-10">
             Book&
