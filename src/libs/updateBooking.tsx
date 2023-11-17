@@ -1,14 +1,13 @@
-export default async function createBooking(
-  hid: string,
+export default async function updateBooking(
   token: string,
+  bid: string,
   bookingDate: string,
   checkoutDate: string
 ) {
   const response = await fetch(
-    `http://localhost:65535/api/v1/hotels/${hid}/bookings`,
+    `http://localhost:65535/api/v1/bookings/${bid}`,
     {
-      method: "POST",
-      credentials: "include",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
@@ -20,9 +19,7 @@ export default async function createBooking(
       }),
     }
   );
-  if (!response.ok) {
-    throw new Error("Cannot create booking");
-  }
+  if (!response.ok) throw new Error("Failed to fetch update booking");
 
-  return await response.json();
+  return response;
 }
