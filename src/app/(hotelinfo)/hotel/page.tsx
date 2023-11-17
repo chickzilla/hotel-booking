@@ -12,6 +12,8 @@ export default async function HotelPage() {
   if (!session || !session.user.token) return null;
 
   const userProfile = await getUserProfile(session.user.token);
+  //console.log(userProfile.data);
+  //console.log(userProfile.data.name);
 
   const hotels = getAllHotels();
   return (

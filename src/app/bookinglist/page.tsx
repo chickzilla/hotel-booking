@@ -10,6 +10,8 @@ export default async function BookingList() {
   //console.log(session.user.token);
   const profile = await getUserProfile(session.user.token);
   const booking = getAllBookings(session.user.token);
+  //console.log(profile.data);
+  //console.log(profile.data.name);
   return (
     <div>
       <BookingListBlock bookingJson={booking} profileJson={profile} />
