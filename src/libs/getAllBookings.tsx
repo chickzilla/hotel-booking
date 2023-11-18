@@ -1,5 +1,5 @@
 export default async function getAllBookings(token: string) {
-  const response = await fetch("http://localhost:65535/api/v1/bookings", {
+  const response = await fetch("http://localhost:5000/api/v1/bookings", {
     method: "GET",
     cache: "no-store",
     headers: {

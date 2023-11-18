@@ -11,6 +11,8 @@ export default async function BookingListBlock({
   const profileReady = await profileJson;
 
   //console.log(bookingReady.data);
+  //console.log(bookingReady.data.user);
+  console.log(profileReady.data._id);
 
   const showAll = () => profileReady.data.role === "admin";
 
@@ -21,6 +23,7 @@ export default async function BookingListBlock({
           <div className="text-xl text-black font-bold">
             {bookingItem.hotel.name}
           </div>
+
           <div className="text-sm text-black">
             Username: {bookingItem.user.name}
           </div>
@@ -36,13 +39,13 @@ export default async function BookingListBlock({
   ) : (
     <main>
       {bookingReady.data.map((bookingItem: Object) =>
-        bookingItem.user == profileReady.data._id ? (
+        bookingItem.user === profileReady.data._id ? (
           <div className="bg-slate-200 rounded-md px-8 mx-5 py-2 my-2 font-sans">
             <div className="text-xl text-black font-bold">
               {bookingItem.hotel.name}
             </div>
             <div className="text-sm text-black">
-              Username: {bookingItem.user.name}
+              Username: {profileReady.data.name}
             </div>
             <div className="text-md text-black">
               Booking Date: {bookingItem.bookingDate.substring(0, 10)}
