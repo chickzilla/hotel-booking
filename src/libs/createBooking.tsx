@@ -8,7 +8,6 @@ export default async function createBooking(
     `http://localhost:65535/api/v1/hotels/${hid}/bookings`,
     {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
@@ -20,9 +19,11 @@ export default async function createBooking(
       }),
     }
   );
-  if (!response.ok) {
+  console.log(Date.now());
+  console.log(bookingDate);
+  if (response.ok) {
+    return response;
+  } else {
     throw new Error("Cannot create booking");
   }
-
-  return await response.json();
 }

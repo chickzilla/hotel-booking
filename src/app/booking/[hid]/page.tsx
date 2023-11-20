@@ -1,26 +1,26 @@
-import FromBooking from "@/components/FormBooking";
+import { authOption } from "@/app/api/auth/[...nextauth]/route";
+import DateReserve from "@/components/DateReserve";
 import getHotelById from "@/libs/getHotel";
+import getUserProfile from "@/libs/getUserProfile";
+import { getServerSession } from "next-auth";
 
 export default async function BookingPage({
   params,
 }: {
   params: { hid: string };
 }) {
+  const session = await getServerSession(authOption);
+  if (!session || !session.user.token) return null;
+  //console.log(session.user.token);
+  const profile = await getUserProfile(session.user.token);
   const hotel = await getHotelById(params.hid);
-  console.log(params.hid);
+  //console.log(params.hid);
   return (
-    <main className="w-[100%] flex flex-col items-center space-y-8 mt-8">
-      <div className="text-xl font-medium">
+    <main className="w-[100%] flex flex-col items-center space-y-8 mt-9">
+      <div className="text-2xl font-medium my-8">
         New/Update Booking {hotel.data.name}
       </div>
-      <FromBooking />
-      <button
-        type="submit"
-        className="text-slate-100 text-md font-semibold font-sans 
-              bg-zinc-800 py-2 px-8 m-4 rounded-full z-30 hover:bg-slate-700 hover:text-white mt-10"
-      >
-        Book Hotel
-      </button>
+      <DateReserve hid={params.hid} token={session.user.token} />
     </main>
   );
 }

@@ -105,7 +105,7 @@ export default function DetailForm({
       <div>
         <div className="font-semibold mx-5 px-1">Name: </div>
         <div
-          className={`text-md mx-5 border-4 border-double px-2 mb-2 rounded-md bg-white ${
+          className={`text-md mx-5 border-4 border-double px-5 mb-2 rounded-md bg-white ${
             isChanging ? "border-blue-300" : ""
           }`}
         >
