@@ -36,7 +36,7 @@ export default function ManageBooking({
     <div className="flex flex-col items-center justify-center space-y-2 w-[5vw]">
       <div>
         <div className="w-[5vw]">
-          <Link href={`/booking/${bid}`}>
+          <Link href={`/update/${bid}`}>
             <DriveFileRenameOutlineSharpIcon />
           </Link>
         </div>
@@ -51,7 +51,10 @@ export default function ManageBooking({
             <button
               className="text-slate-100 text-sm font-semibold font-sans 
           bg-red-700 rounded-full p-1 z-30 hover:bg-red-950 hover:text-white"
-              onClick={() => deleteHandler()}
+              onClick={() => {
+                deleteHandler();
+                setCheckDelete(!checkDelete);
+              }}
             >
               Sure!
             </button>

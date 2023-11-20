@@ -1,15 +1,19 @@
 "use client";
 
 import createBooking from "@/libs/createBooking";
+import getBookingById from "@/libs/getBooking";
+import updateBooking from "@/libs/updateBooking";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function DateReserve({
-  hid,
+  id,
   token,
+  typeofAction,
 }: {
-  hid: string;
+  id: string;
   token: string;
+  typeofAction: string;
 }) {
   const [bookingDate, setBookingDate] = useState("");
   const [checkoutDate, setCheckoutDate] = useState("");
@@ -25,28 +29,63 @@ export default function DateReserve({
       alert("You can book up at most 3 nights");
       return;
     }
+    if (daysDifference < 0) {
+      alert("The first night must come before the night of Check-out.");
+    }
     if (bookingDate === "" || checkoutDate === "") {
       alert("Please fill all field");
       return;
     }
+    const currentDate = new Date().toISOString().split("T")[0];
 
-    try {
-      const response = await createBooking(
-        hid,
-        token,
-        bookingDate,
-        checkoutDate
-      );
-      if (response) {
-        alert("Booking Success");
+    if (
+      new Date(bookingDate) < new Date(currentDate) ||
+      new Date(checkoutDate) < new Date(currentDate)
+    ) {
+      alert("Selected date cannot be in the past");
+      return;
+    }
+
+    if (typeofAction == "update") {
+      const booked = await getBookingById(token, id);
+      setBookingDate(booked.data.bookingDate);
+      setCheckoutDate(booked.data.checkoutDate);
+
+      try {
+        const response = await updateBooking(
+          token,
+          id,
+          bookingDate,
+          checkoutDate
+        );
+        if (response.ok) {
+          rounter.refresh();
+          rounter.push("/bookinglist");
+        }
+      } catch (err) {
+        alert(
+          "Update fail, Please update again. (You can book up at most 3 nights)"
+        );
+        console.log(err);
       }
-      if (response.ok) {
-        rounter.refresh();
-        rounter.push("/bookinglist");
+    }
+
+    if (typeofAction == "create") {
+      try {
+        const response = await createBooking(
+          id,
+          token,
+          bookingDate,
+          checkoutDate
+        );
+        if (response.ok) {
+          rounter.refresh();
+          rounter.push("/bookinglist");
+        }
+      } catch (err) {
+        alert("Booking fail, Please book again.");
+        console.log(err);
       }
-    } catch (err) {
-      alert("Booking fail, Please book again.");
-      console.log(err);
     }
   };
   return (
@@ -102,7 +141,7 @@ export default function DateReserve({
           newBookingHandler();
         }}
       >
-        Book Hotel
+        {typeofAction == "create" ? "Book Hotel" : "Update Booking"}
       </button>
     </div>
   );
