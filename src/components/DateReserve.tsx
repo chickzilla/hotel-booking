@@ -6,6 +6,9 @@ import updateBooking from "@/libs/updateBooking";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import dayjs from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function DateReserve({
   id,
@@ -97,19 +100,16 @@ export default function DateReserve({
             Booking First Night:
           </div>
           <div className="bg-neutral-400 rounded-lg w-[30vw] px-10 py-5 flex flex-row justify-center w-[35vw]">
-            <input
-              type="date"
-              id="bookingDate"
-              name="bookingDate"
-              value={bookingDate}
-              onChange={(e) => {
-                const formattedDate = new Date(e.target.value)
-                  .toISOString()
-                  .split("T")[0];
-                setBookingDate(dayjs(formattedDate).format("YYYY-MM-DD"));
-              }}
-              className="w-full rounded-sm px-2 border-2"
-            ></input>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                className="w-full rounded-sm bg-white"
+                value={bookingDate}
+                onChange={(value) => {
+                  setBookingDate(value ? value : "");
+                  //console.log(value);
+                }}
+              ></DatePicker>
+            </LocalizationProvider>
           </div>
         </div>
         <div>
@@ -117,20 +117,15 @@ export default function DateReserve({
             Check-out Nights:
           </div>
           <div className="bg-neutral-400 rounded-lg space-x-5 w-[30vw] px-10 py-5 flex flex-row justify-center w-[35vw] mb-5">
-            <input
-              type="date"
-              id="checkoutDate"
-              name="checkoutDate"
-              value={checkoutDate}
-              onChange={(e) => {
-                const formattedDate = new Date(e.target.value)
-                  .toISOString()
-                  .split("T")[0];
-                setCheckoutDate(dayjs(formattedDate).format("YYYY-MM-DD"));
-                //console.log(formattedDate);
-              }}
-              className="w-full rounded-sm px-2 border-2"
-            ></input>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                className="w-full rounded-sm bg-white"
+                value={checkoutDate}
+                onChange={(value) => {
+                  setCheckoutDate(value ? value : "");
+                }}
+              ></DatePicker>
+            </LocalizationProvider>
           </div>
         </div>
       </div>
