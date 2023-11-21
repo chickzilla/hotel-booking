@@ -14,7 +14,7 @@ export default async function HotelPage() {
 
   const userProfile = await getUserProfile(session.user.token);
 
-  const hotels: HotelJson = await getAllHotels();
+  const hotels: HotelJson = getAllHotels();
   return (
     <main className="mt-[80px] flex flex-col justify-center items-center text-center ">
       <Suspense
