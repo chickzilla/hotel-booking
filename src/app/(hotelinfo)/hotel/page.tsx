@@ -6,16 +6,15 @@ import AddingHotelButton from "@/components/AddingHotelButton";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
+import { HotelJson } from "@/interface";
 
 export default async function HotelPage() {
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;
 
   const userProfile = await getUserProfile(session.user.token);
-  //console.log(userProfile.data);
-  //console.log(userProfile.data.name);
 
-  const hotels = getAllHotels();
+  const hotels: HotelJson = await getAllHotels();
   return (
     <main className="mt-[80px] flex flex-col justify-center items-center text-center ">
       <Suspense

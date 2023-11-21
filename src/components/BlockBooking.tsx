@@ -1,25 +1,23 @@
 import { getServerSession } from "next-auth";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
-import deleteBooking from "@/libs/deleteBooking";
-import { useRouter } from "next/navigation";
 import ManageBooking from "./ManageBookingButton";
+import { BookingItem, BookingJson } from "@/interface";
 
 export default async function BlockBooking({
   bookingJson,
 }: {
-  bookingJson: Object;
+  bookingJson: BookingJson;
 }) {
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;
-  const bookingReady = await bookingJson;
+  const bookingReady: BookingJson = await bookingJson;
   const profile = await getUserProfile(session.user.token);
-
   const isAdmin = () => profile.data.role === "admin";
 
   return isAdmin() ? (
     <main>
-      {bookingReady.data.map((bookingItem: Object) => (
+      {bookingReady.data.map((bookingItem: BookingItem) => (
         <div className="bg-slate-200 rounded-md px-8 mx-5 py-2 my-2 font-sans w-[75vw] flex flex-row justify-between items-center">
           <div>
             <div className="text-xl text-black font-bold">
@@ -43,7 +41,7 @@ export default async function BlockBooking({
     </main>
   ) : (
     <main>
-      {bookingReady.data.map((bookingItem: Object) => (
+      {bookingReady.data.map((bookingItem: BookingItem) => (
         <div className="bg-slate-200 rounded-md px-8 mx-5 py-2 my-2 font-sans w-[75vw] flex flex-row justify-between items-center">
           <div>
             <div className="text-xl text-black font-bold">

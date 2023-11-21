@@ -2,15 +2,12 @@ import BookingListBlock from "@/components/BookingListBlock";
 import getAllBookings from "@/libs/getAllBookings";
 import { getServerSession } from "next-auth";
 import { authOption } from "../api/auth/[...nextauth]/route";
-import getUserProfile from "@/libs/getUserProfile";
+import { BookingJson } from "@/interface";
 
 export default async function BookingList() {
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;
-  //console.log(session.user.token);
-  const booking = getAllBookings(session.user.token);
-  //console.log(profile.data);
-  //console.log(profile.data.name);
+  const booking: BookingJson = await getAllBookings(session.user.token);
   return (
     <div className="flex flex-col items-center">
       <BookingListBlock bookingJson={booking} />

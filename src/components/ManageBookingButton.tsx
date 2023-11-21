@@ -13,15 +13,11 @@ export default function ManageBooking({
   token: string;
   bid: string;
 }) {
-  //console.log(token);
-  //console.log(bid);
   const rounter = useRouter();
   const [checkDelete, setCheckDelete] = useState(false);
   const deleteHandler = async () => {
     try {
       const res = await deleteBooking(token, bid);
-      //rounter.push("/hotel");
-      //console.log(res.status);
 
       if (res.ok) {
         rounter.refresh();

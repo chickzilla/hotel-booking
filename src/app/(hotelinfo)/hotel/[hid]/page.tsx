@@ -4,9 +4,7 @@ import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
-import { useState } from "react";
 import DetailForm from "@/components/DetailForm";
-import Card from "@/components/Card";
 
 export default async function DetailPage({
   params,

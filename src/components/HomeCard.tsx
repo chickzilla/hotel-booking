@@ -1,10 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import HotelIcon from "@mui/icons-material/Hotel";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import SearchIcon from "@mui/icons-material/Search";
-import { redirect } from "next/navigation";
 
 export default function HomeCard() {
   const rounter = useRouter();

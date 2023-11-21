@@ -1,9 +1,11 @@
+import { BookingJson } from "@/interface";
 import BlockBooking from "./BlockBooking";
 
-export default function BookingListBlock({
+export default async function BookingListBlock({
   bookingJson,
 }: {
-  bookingJson: Object;
+  bookingJson: BookingJson;
 }) {
-  return <BlockBooking bookingJson={bookingJson} />;
+  const booking = await bookingJson;
+  return <BlockBooking bookingJson={booking} />;
 }

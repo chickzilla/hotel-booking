@@ -9,7 +9,6 @@ import Hotel from "@/db/models/Hotel";
 import { dbConnect } from "@/db/dbConnect";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { useState } from "react";
 
 export default async function HotelAddForm() {
   const addHotel = async (addHotelFrom: FormData) => {

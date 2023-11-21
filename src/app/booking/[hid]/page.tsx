@@ -11,10 +11,8 @@ export default async function BookingPage({
 }) {
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;
-  //console.log(session.user.token);
   const profile = await getUserProfile(session.user.token);
   const hotel = await getHotelById(params.hid);
-  //console.log(params.hid);
   return (
     <main className="w-[100%] flex flex-col items-center space-y-8 mt-9">
       <div className="text-2xl font-medium my-8">

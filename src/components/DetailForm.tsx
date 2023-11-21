@@ -88,7 +88,6 @@ export default function DetailForm({
   const deleteHandler = async () => {
     try {
       const res = await deleteHotel(token, hid);
-      //rounter.push("/hotel");
 
       if (res.ok) {
         rounter.refresh();

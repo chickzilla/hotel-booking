@@ -1,7 +1,5 @@
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import DateReserve from "@/components/DateReserve";
-import getHotelById from "@/libs/getHotel";
-import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
 
 export default async function BookingPage({
@@ -11,8 +9,6 @@ export default async function BookingPage({
 }) {
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;
-  //console.log(session.user.token);
-  //console.log(params.hid);
   return (
     <main className="w-[100%] flex flex-col items-center space-y-8 mt-9">
       <div className="text-2xl font-medium my-8">Update Booking</div>
