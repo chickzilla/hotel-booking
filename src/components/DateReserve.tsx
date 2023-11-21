@@ -5,6 +5,7 @@ import getBookingById from "@/libs/getBooking";
 import updateBooking from "@/libs/updateBooking";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import dayjs from "dayjs";
 
 export default function DateReserve({
   id,
@@ -48,8 +49,8 @@ export default function DateReserve({
 
     if (typeofAction == "update") {
       const booked = await getBookingById(token, id);
-      setBookingDate(booked.data.bookingDate);
-      setCheckoutDate(booked.data.checkoutDate);
+      setBookingDate(dayjs(booked.data.bookingDate).format("YYYY-MM-DD"));
+      setCheckoutDate(dayjs(booked.data.checkoutDate).format("YYYY-MM-DD"));
 
       try {
         const response = await updateBooking(
