@@ -106,7 +106,7 @@ export default function DateReserve({
                 const formattedDate = new Date(e.target.value)
                   .toISOString()
                   .split("T")[0];
-                setBookingDate(formattedDate);
+                setBookingDate(dayjs(formattedDate).format("YYYY-MM-DD"));
               }}
               className="w-full rounded-sm px-2 border-2"
             ></input>
@@ -126,7 +126,7 @@ export default function DateReserve({
                 const formattedDate = new Date(e.target.value)
                   .toISOString()
                   .split("T")[0];
-                setCheckoutDate(formattedDate);
+                setCheckoutDate(dayjs(formattedDate).format("YYYY-MM-DD"));
                 //console.log(formattedDate);
               }}
               className="w-full rounded-sm px-2 border-2"
