@@ -19,8 +19,6 @@ export default async function createBooking(
       }),
     }
   );
-  console.log(Date.now());
-  console.log(bookingDate);
   if (response.ok) {
     return response;
   } else {
