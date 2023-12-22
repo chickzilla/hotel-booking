@@ -5,7 +5,7 @@ export default async function createBooking(
   checkoutDate: string
 ) {
   const response = await fetch(
-    `http://localhost:65535/api/v1/hotels/${hid}/bookings`,
+    `http://localhost:5000/api/v1/hotels/${hid}/bookings`,
     {
       method: "POST",
       headers: {

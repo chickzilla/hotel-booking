@@ -5,6 +5,8 @@ export default async function deleteHotel(token: string, hid: string) {
       authorization: `Bearer ${token}`,
     },
   });
+
+  console.log(response.statusText);
   if (!response.ok) throw new Error("Failed to fetch delete hotel");
 
   return response;
